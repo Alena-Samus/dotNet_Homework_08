@@ -88,7 +88,36 @@ namespace hwless8
 
             department current = new department();
 
-            current.createDepertment();
+            Random newNumber = new Random();
+            Random newNumberDay = new Random();
+            Random newNumberMonth = new Random();
+            Random newNumberYear = new Random();
+
+
+            for (int i = 1; i <= 3; i++)
+            {
+                //Random newNumber = new Random();
+                //Random newNumberDay = new Random();
+                //Random newNumberMonth = new Random();
+                //Random newNumberYear = new Random();
+
+                int newNumberResult = newNumber.Next(1_000_000);
+
+                
+                int newNumberDayResult = newNumberDay.Next(31);
+
+                
+                int newNumberMonthResult = newNumberDay.Next(12);
+
+
+                
+                int newNumberYearResult = newNumberDay.Next(2000, 2022);
+
+
+                //current.createDepertment(i, newNumberResult, newNumberDayResult, newNumberMonthResult, newNumberYearResult);
+                Console.WriteLine($"{i} {newNumberResult} {newNumberDayResult} {newNumberMonthResult} {newNumberYearResult}");
+            }
+            
 
             Console.ReadKey();
     }
