@@ -1,0 +1,9 @@
+D:\Alena\homework\m8\hwless8\obj\Debug\hwless8.csproj.AssemblyReference.cache
+D:\Alena\homework\m8\hwless8\obj\Debug\hwless8.csproj.CoreCompileInputs.cache
+D:\Alena\homework\m8\hwless8\bin\Debug\hwless8.exe.config
+D:\Alena\homework\m8\hwless8\bin\Debug\hwless8.exe
+D:\Alena\homework\m8\hwless8\bin\Debug\hwless8.pdb
+D:\Alena\homework\m8\hwless8\bin\Debug\Newtonsoft.Json.dll
+D:\Alena\homework\m8\hwless8\bin\Debug\Newtonsoft.Json.xml
+D:\Alena\homework\m8\hwless8\obj\Debug\hwless8.exe
+D:\Alena\homework\m8\hwless8\obj\Debug\hwless8.pdb

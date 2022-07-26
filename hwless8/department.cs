@@ -13,7 +13,7 @@ namespace hwless8
         private int workersAmount;
 
         //Конструктор
-        public department (string nameDepartment, DateTime foundingDate, int workersAmount)
+        public department(string nameDepartment, DateTime foundingDate, int workersAmount)
         {
             this.nameDepartment = nameDepartment;
             this.foundingDate = foundingDate;
@@ -37,7 +37,7 @@ namespace hwless8
         public int WorkersAmount
         {
             get { return this.workersAmount; }
-            set { this.workersAmount = value; }    
+            set { this.workersAmount = value; }
         }
 
 
@@ -45,8 +45,8 @@ namespace hwless8
 
         public department createDepertment()
         {
-            
-            
+
+
             Random newNumber = new Random();
             int newNumberResult = newNumber.Next(10);
 
@@ -58,7 +58,7 @@ namespace hwless8
 
 
             Random newNumberYear = new Random();
-            int newNumberYearResult = newNumberDay.Next(2000,2022);
+            int newNumberYearResult = newNumberDay.Next(2000, 2022);
 
             //department newDepartment = new department("Отдел_"+ newNumberResult,new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00),newNumberResult + 3);
 

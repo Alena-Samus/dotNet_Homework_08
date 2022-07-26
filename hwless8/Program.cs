@@ -87,7 +87,9 @@ namespace hwless8
             /// 
 
             department current = new department();
+
             current.createDepertment();
+
             Console.ReadKey();
     }
 

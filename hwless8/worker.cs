@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hwless8
 {
-    struct worker
+    class worker
     {
     }
 }
