@@ -4,11 +4,59 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace hwless8
 {
+   
     class Program
     {
+        /// <summary>
+        /// Метод для сериализации в XML файл структуры list
+        /// </summary>
+        /// <param name="currentDepartmentList"></param>
+        /// <param name="path"></param>
+        static void SerializeDepartments(List<department> currentDepartmentList, string path)
+        {
+            //Создаем сериализатор на основе указанного типа
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<department>));
+
+            //Создаем поток для сохранения данных
+            Stream fStream = new FileStream(path, FileMode.Create, FileAccess.Write);
+
+            //Запускаем процесс сериализации
+            xmlSerializer.Serialize(fStream, currentDepartmentList);
+
+            //Закрываем поток
+            fStream.Close();
+
+            Console.WriteLine($"Сериализация списка отделов завершилась");
+        }
+
+        static List<department> DeserializeDepartmentList (string path)
+        {
+            //Структура для хранения извлеченных данных
+            List<department> tempDepartments = new List<department>();
+
+            //Создаем сериализатор на основе указанного типа
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<department>));
+
+            //Открываем поток для хранения данных
+            Stream fStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+            //Запускаем процесс десериализации
+            tempDepartments = xmlSerializer.Deserialize(fStream) as List<department>;
+
+            //Закрываем поток
+            fStream.Close();
+
+            //Возвращаем дерсериализованный лист
+            return tempDepartments;
+
+            Console.WriteLine("Десериализация файла со списком отделов завершена");
+        }
+
         static void Main(string[] args)
         {
             /// Создать прототип информационной системы, в которой есть возможност работать со структурой организации
@@ -93,34 +141,46 @@ namespace hwless8
             Random newNumberMonth = new Random();
             Random newNumberYear = new Random();
 
+            //Формирование списка отделов
+            List<department> listDepartment = new List<department>();
+
 
             for (int i = 1; i <= 3; i++)
             {
-                //Random newNumber = new Random();
-                //Random newNumberDay = new Random();
-                //Random newNumberMonth = new Random();
-                //Random newNumberYear = new Random();
 
                 int newNumberResult = newNumber.Next(1_000_000);
-
                 
-                int newNumberDayResult = newNumberDay.Next(31);
-
+                int newNumberDayResult = newNumberDay.Next(1,31);
                 
-                int newNumberMonthResult = newNumberDay.Next(12);
-
-
+                int newNumberMonthResult = newNumberDay.Next(1,13);
                 
                 int newNumberYearResult = newNumberDay.Next(2000, 2022);
 
 
-                //current.createDepertment(i, newNumberResult, newNumberDayResult, newNumberMonthResult, newNumberYearResult);
-                Console.WriteLine($"{i} {newNumberResult} {newNumberDayResult} {newNumberMonthResult} {newNumberYearResult}");
+              listDepartment.Add(current.createDepertment(i, newNumberResult, newNumberDayResult, newNumberMonthResult, newNumberYearResult));
+                //Console.WriteLine($"number: {i} new number:{newNumberResult}  day: {newNumberDayResult} month:{newNumberMonthResult} year: {newNumberYearResult}");
             }
-            
+
+            foreach (department e in listDepartment)
+            {
+                e.printDepartment();
+            }
+
+            //Работа метода сериализации
+            SerializeDepartments(listDepartment, "newListDepartments.xml");
 
             Console.ReadKey();
-    }
+
+            //Работа метода десериализации
+            List<department> newList = new List<department>();
+            newList = DeserializeDepartmentList("newListDepartments.xml");
+            foreach (department e in newList)
+            {
+                e.printDepartment();
+            }
+            Console.ReadKey();
+
+        }
 
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<ArrayOfDepartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <department>
+    <nameDepartment>Отдел_1</nameDepartment>
+    <foundingDate>2016-01-08T00:00:00</foundingDate>
+    <workersAmount>245521</workersAmount>
+  </department>
+  <department>
+    <nameDepartment>Отдел_2</nameDepartment>
+    <foundingDate>2019-01-15T00:00:00</foundingDate>
+    <workersAmount>40748</workersAmount>
+  </department>
+  <department>
+    <nameDepartment>Отдел_3</nameDepartment>
+    <foundingDate>2001-05-19T00:00:00</foundingDate>
+    <workersAmount>767916</workersAmount>
+  </department>
+</ArrayOfDepartment>

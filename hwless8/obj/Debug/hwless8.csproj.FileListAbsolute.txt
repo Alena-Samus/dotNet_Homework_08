@@ -7,3 +7,13 @@ D:\Alena\homework\m8\hwless8\bin\Debug\Newtonsoft.Json.dll
 D:\Alena\homework\m8\hwless8\bin\Debug\Newtonsoft.Json.xml
 D:\Alena\homework\m8\hwless8\obj\Debug\hwless8.exe
 D:\Alena\homework\m8\hwless8\obj\Debug\hwless8.pdb
+D:\Elena\C#\lesson8\hwless8\hwless8\bin\Debug\hwless8.exe.config
+D:\Elena\C#\lesson8\hwless8\hwless8\bin\Debug\hwless8.exe
+D:\Elena\C#\lesson8\hwless8\hwless8\bin\Debug\hwless8.pdb
+D:\Elena\C#\lesson8\hwless8\hwless8\bin\Debug\Newtonsoft.Json.dll
+D:\Elena\C#\lesson8\hwless8\hwless8\bin\Debug\Newtonsoft.Json.xml
+D:\Elena\C#\lesson8\hwless8\hwless8\obj\Debug\hwless8.csproj.AssemblyReference.cache
+D:\Elena\C#\lesson8\hwless8\hwless8\obj\Debug\hwless8.csproj.CoreCompileInputs.cache
+D:\Elena\C#\lesson8\hwless8\hwless8\obj\Debug\hwless8.csproj.CopyComplete
+D:\Elena\C#\lesson8\hwless8\hwless8\obj\Debug\hwless8.exe
+D:\Elena\C#\lesson8\hwless8\hwless8\obj\Debug\hwless8.pdb
