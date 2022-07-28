@@ -43,28 +43,16 @@ namespace hwless8
 
         //Метод для создания отдела
 
-        public department createDepertment()
+        public department createDepertment(int numbDep, int newNumberResult, int newNumberDayResult, int newNumberMonthResult, int newNumberYearResult)
         {
 
 
-            Random newNumber = new Random();
-            int newNumberResult = newNumber.Next(10);
-
-            Random newNumberDay = new Random();
-            int newNumberDayResult = newNumberDay.Next(31);
-
-            Random newNumberMonth = new Random();
-            int newNumberMonthResult = newNumberDay.Next(12);
-
-
-            Random newNumberYear = new Random();
-            int newNumberYearResult = newNumberDay.Next(2000, 2022);
 
             //department newDepartment = new department("Отдел_"+ newNumberResult,new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00),newNumberResult + 3);
 
 
 
-            department newDepartment = new department("Отдел_" + newNumberResult, new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00), newNumberResult + 3);
+            department newDepartment = new department("Отдел_" + numbDep, new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00), newNumberResult);
 
 
 
