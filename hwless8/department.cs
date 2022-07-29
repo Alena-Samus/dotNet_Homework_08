@@ -27,7 +27,6 @@ namespace hwless8
 
 
 
-
         /// <summary>
         /// Метод для создания отдела
         /// </summary>
@@ -39,12 +38,7 @@ namespace hwless8
         /// <returns></returns>
         public department createDepertment(int numbDep, int newNumberResult, int newNumberDayResult, int newNumberMonthResult, int newNumberYearResult)
         {
-
-
-
             //department newDepartment = new department("Отдел_"+ newNumberResult,new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00),newNumberResult + 3);
-
-
 
             department newDepartment = new department("Отдел_" + numbDep, new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00), newNumberResult);
 

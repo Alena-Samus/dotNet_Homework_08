@@ -17,7 +17,7 @@ namespace hwless8
         /// </summary>
         /// <param name="currentDepartmentList"></param>
         /// <param name="path"></param>
-        static void SerializeDepartments(List<department> currentDepartmentList, string path)
+        static void Serialize(List<department> currentDepartmentList, string path)
         {
             //Создаем сериализатор на основе указанного типа
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<department>));
@@ -39,7 +39,7 @@ namespace hwless8
         /// </summary>
         /// <param name="path"></param>
         /// <returns></returns>
-        static List<department> DeserializeDepartmentList (string path)
+        static List<department> Deserialize(string path)
         {
             //Структура для хранения извлеченных данных
             List<department> tempDepartments = new List<department>();
@@ -282,7 +282,7 @@ namespace hwless8
             printList(sortedList(newListDepartment));
 
             //Работа метода сериализации
-            SerializeDepartments(newListDepartment, "newListDepartments.xml");
+            Serialize(newListDepartment, "newListDepartments.xml");
 
             //Сериализация в json
             string jsonDepartment = JsonConvert.SerializeObject(newListDepartment);
@@ -291,7 +291,7 @@ namespace hwless8
 
             //Работа метода десериализации
             List<department> newList = new List<department>();
-            newList = DeserializeDepartmentList("newListDepartments.xml");
+            newList = Deserialize("newListDepartments.xml");
             Console.WriteLine("\nДесериализация из xml");
             printList(newList);
 
