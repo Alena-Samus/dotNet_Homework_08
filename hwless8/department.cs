@@ -26,11 +26,17 @@ namespace hwless8
         }
 
 
-        
 
 
-        //Метод для создания отдела
-
+        /// <summary>
+        /// Метод для создания отдела
+        /// </summary>
+        /// <param name="numbDep"></param>
+        /// <param name="newNumberResult"></param>
+        /// <param name="newNumberDayResult"></param>
+        /// <param name="newNumberMonthResult"></param>
+        /// <param name="newNumberYearResult"></param>
+        /// <returns></returns>
         public department createDepertment(int numbDep, int newNumberResult, int newNumberDayResult, int newNumberMonthResult, int newNumberYearResult)
         {
 
@@ -43,11 +49,9 @@ namespace hwless8
             department newDepartment = new department("Отдел_" + numbDep, new DateTime(newNumberYearResult, newNumberMonthResult, newNumberDayResult, 00, 00, 00), newNumberResult);
 
             
-
             return newDepartment;
         }
-
-       //Метод для печати информации об отделе
+        //Метод для печати информации об отделе
 
         public void printDepartment ()
         {
@@ -56,5 +60,7 @@ namespace hwless8
                 this.foundingDate,
                 this.workersAmount);
         }
+
+
     }
 }

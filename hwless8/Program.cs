@@ -34,6 +34,11 @@ namespace hwless8
             Console.WriteLine($"Сериализация списка отделов завершилась");
         }
 
+        /// <summary>
+        /// Метод для сериализации из XML-файла в структуру list
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         static List<department> DeserializeDepartmentList (string path)
         {
             //Структура для хранения извлеченных данных
@@ -51,10 +56,111 @@ namespace hwless8
             //Закрываем поток
             fStream.Close();
 
+            Console.WriteLine("Десериализация файла со списком отделов завершилась");
             //Возвращаем дерсериализованный лист
             return tempDepartments;
 
-            Console.WriteLine("Десериализация файла со списком отделов завершена");
+            
+        }
+
+        /// <summary>
+        /// Метод для печати list
+        /// </summary>
+        /// <param name="currentList">Принимает list в качестве параметра</param>
+        static void printList(List<department> currentList)
+        {
+            foreach (department e in currentList)
+            {
+                e.printDepartment();
+            }
+        }
+        
+        /// <summary>
+        /// Метод для удаления отдела
+        /// </summary>
+        /// <param name="currentListDepartment">Текущий список отделов</param>
+        static void removeElement(List<department> currentListDepartment)
+        {
+            Console.WriteLine("Введите отдел, который необходимо удалить");
+
+            string delDepStr = Console.ReadLine();
+            department delDep = new department();
+
+
+            for (int i = 0; i < currentListDepartment.Count; i++)
+            {
+                if (currentListDepartment[i].nameDepartment == delDepStr)
+                {
+                    delDep = currentListDepartment[i];
+                    currentListDepartment.Remove(delDep);
+
+                }
+            }
+            Console.WriteLine("\nСписок отделов после удаления");
+
+        }
+
+
+        /// <summary>
+        /// Метод для поиска индекса элемента в list
+        /// </summary>
+        /// <param name="departmentName"></param>
+        /// <param name="currentListDepartment"></param>
+        /// <returns></returns>
+        static int findIndex(string departmentName, List<department> currentListDepartment)
+        {
+            //int departmentIndex;
+            department currentlDep = new department();
+            for (int i = 0; i < currentListDepartment.Count; i++)
+            {
+                if (currentListDepartment[i].nameDepartment == departmentName)
+                {
+                    currentlDep = currentListDepartment[i];
+                    
+
+                }
+            }
+
+            return currentListDepartment.IndexOf(currentlDep); 
+        }
+
+        static void modifyList(List<department> currentList)
+        {
+            Console.WriteLine("Введите отдел, который необходимо редактировать");
+
+            string modifyDepStr = Console.ReadLine();
+            //department delDep = new department();
+
+            int oldIndex = findIndex(modifyDepStr, currentList);
+
+            Console.WriteLine($"Индекс в исходном списке отделов: {oldIndex}");
+
+            Console.WriteLine("Введите новое название");
+
+            string newNameDep = Console.ReadLine();
+
+            Console.WriteLine("Введите новую дату создания ");
+
+            DateTime newDate = Convert.ToDateTime(Console.ReadLine());
+
+            Console.WriteLine("Введите новое количество сотрудников ");
+
+            int newAmount = Convert.ToInt32(Console.ReadLine());
+
+
+            Console.WriteLine("Ввод информации для редактирования окончен");
+
+
+            department current = new department(newNameDep, newDate, newAmount);
+
+            currentList.Insert(oldIndex, current);
+            currentList.RemoveAt(oldIndex + 1);
+        }
+
+        static List<department> sortedList(List<department> currentList)
+        {
+           List<department> sorted = currentList.OrderBy(x => x.nameDepartment).ThenBy(x => x.workersAmount).ToList();
+            return sorted;
         }
 
         static void Main(string[] args)
@@ -142,42 +248,72 @@ namespace hwless8
             Random newNumberYear = new Random();
 
             //Формирование списка отделов
-            List<department> listDepartment = new List<department>();
+            List<department> newListDepartment = new List<department>();
 
 
-            for (int i = 1; i <= 3; i++)
-            {
+            //for (int i = 1; i <= 3; i++)
+            //{
 
-                int newNumberResult = newNumber.Next(1_000_000);
-                
-                int newNumberDayResult = newNumberDay.Next(1,31);
-                
-                int newNumberMonthResult = newNumberDay.Next(1,13);
-                
-                int newNumberYearResult = newNumberDay.Next(2000, 2022);
+            //    int newNumberResult = newNumber.Next(1_000_000);
+
+            //    int newNumberDayResult = newNumberDay.Next(1, 31);
+
+            //    int newNumberMonthResult = newNumberDay.Next(1, 13);
+
+            //    int newNumberYearResult = newNumberDay.Next(2000, 2022);
 
 
-              listDepartment.Add(current.createDepertment(i, newNumberResult, newNumberDayResult, newNumberMonthResult, newNumberYearResult));
-                //Console.WriteLine($"number: {i} new number:{newNumberResult}  day: {newNumberDayResult} month:{newNumberMonthResult} year: {newNumberYearResult}");
-            }
 
-            foreach (department e in listDepartment)
-            {
-                e.printDepartment();
-            }
+            //    newListDepartment.Add(current.createDepertment(i, newNumberResult, newNumberDayResult, newNumberMonthResult, newNumberYearResult));
+            //    //Console.WriteLine($"number: {i} new number:{newNumberResult}  day: {newNumberDayResult} month:{newNumberMonthResult} year: {newNumberYearResult}");
+            //}
+
+            newListDepartment.Add(current.createDepertment(1, 10, 1, 3, 2007));
+            newListDepartment.Add(current.createDepertment(2, 33, 14, 8, 2003));
+            newListDepartment.Add(current.createDepertment(3, 75, 30, 12, 2019));
+            newListDepartment.Add(current.createDepertment(2, 18, 30, 12, 2019));
+            newListDepartment.Add(current.createDepertment(3, 180, 30, 12, 2019));
+            newListDepartment.Add(current.createDepertment(2, 18, 30, 12, 2019));
+
+            Console.WriteLine("До упорядочивания");
+            printList(newListDepartment);
+                                
+            Console.WriteLine("\nПосле упорядочивания");
+            printList(sortedList(newListDepartment));
 
             //Работа метода сериализации
-            SerializeDepartments(listDepartment, "newListDepartments.xml");
+            SerializeDepartments(newListDepartment, "newListDepartments.xml");
 
+            //Сериализация в json
+            string jsonDepartment = JsonConvert.SerializeObject(newListDepartment);
+            File.WriteAllText("jsonListDepartment", jsonDepartment);
             Console.ReadKey();
 
             //Работа метода десериализации
             List<department> newList = new List<department>();
             newList = DeserializeDepartmentList("newListDepartments.xml");
-            foreach (department e in newList)
-            {
-                e.printDepartment();
-            }
+            Console.WriteLine("\nДесериализация из xml");
+            printList(newList);
+
+            //Работа метода десериализации из json
+            List<department> newList2 = new List<department>();
+            string fromJsom = File.ReadAllText("jsonListDepartment");
+            newList2 = JsonConvert.DeserializeObject<List<department>>(fromJsom);
+            Console.WriteLine("\nДесериализация изjson");
+            printList(newList2);
+
+
+            modifyList(newListDepartment);
+
+            printList(newListDepartment);
+
+
+
+            removeElement(newListDepartment);
+            printList(newListDepartment);
+
+
+
             Console.ReadKey();
 
         }
