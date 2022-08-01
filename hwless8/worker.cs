@@ -26,29 +26,43 @@ namespace hwless8
 
         }
 
-        public worker(int numbWorker, byte ageWorker, department depNumb)
+        public worker(string lastName, string firstName, byte age, department department, int workerNumber, int salary, byte projectAmount)
         {
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.age = age;
+            this.department = department;
+            this.workerNumber = workerNumber;
+            this.salary = salary;
+            this.projectAmount = projectAmount;
 
         }
 
 
-        public worker createDepertment(int numbWorker, byte ageWorker, department depNumb)
+
+        public worker createWorker(int numbWorker, byte ageWorker, department depNumb)
         {
             
 
-            worker newWorker = new worker("Фамилия_" + numbWorker, "Имя_" + numbWorker, ageWorker, depNumb, numbWorker, numbWorker * 1000, numbWorker * 5);
+            worker newWorker = new worker("Фамилия_" + numbWorker, "Имя_" + numbWorker, ageWorker, depNumb, numbWorker, (ageWorker / 5) * 100, (byte)(ageWorker / 5));
 
 
             return newWorker;
         }
         //Метод для печати информации об отделе
 
-        public void printDepartment()
+        public void printWorker()
         {
-            Console.WriteLine("{0} {1} {2}",
-                this.nameDepartment,
-                this.foundingDate,
-                this.workersAmount);
+            Console.WriteLine("{0,5} {1,15} {2,10} {3,3} {4,10} {5,6} {6,4}",
+            this.workerNumber,
+            this.lastName,
+            this.firstName,
+            this.age,
+            this.department.nameDepartment,
+            this.salary,
+            this.projectAmount);
+            
+
         }
 
 

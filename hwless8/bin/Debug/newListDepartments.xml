@@ -2,17 +2,32 @@
 <ArrayOfDepartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <department>
     <nameDepartment>Отдел_1</nameDepartment>
-    <foundingDate>2002-08-08T00:00:00</foundingDate>
-    <workersAmount>245371</workersAmount>
+    <foundingDate>2007-03-01T00:00:00</foundingDate>
+    <workersAmount>10</workersAmount>
   </department>
   <department>
     <nameDepartment>Отдел_2</nameDepartment>
-    <foundingDate>2008-10-05T00:00:00</foundingDate>
-    <workersAmount>649674</workersAmount>
+    <foundingDate>2003-08-14T00:00:00</foundingDate>
+    <workersAmount>33</workersAmount>
   </department>
   <department>
     <nameDepartment>Отдел_3</nameDepartment>
-    <foundingDate>2011-04-14T00:00:00</foundingDate>
-    <workersAmount>119423</workersAmount>
+    <foundingDate>2019-12-30T00:00:00</foundingDate>
+    <workersAmount>75</workersAmount>
+  </department>
+  <department>
+    <nameDepartment>Отдел_2</nameDepartment>
+    <foundingDate>2019-12-30T00:00:00</foundingDate>
+    <workersAmount>18</workersAmount>
+  </department>
+  <department>
+    <nameDepartment>Отдел_3</nameDepartment>
+    <foundingDate>2019-12-30T00:00:00</foundingDate>
+    <workersAmount>180</workersAmount>
+  </department>
+  <department>
+    <nameDepartment>Отдел_2</nameDepartment>
+    <foundingDate>2019-12-30T00:00:00</foundingDate>
+    <workersAmount>18</workersAmount>
   </department>
 </ArrayOfDepartment>
