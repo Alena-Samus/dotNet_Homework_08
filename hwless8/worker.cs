@@ -40,15 +40,15 @@ namespace hwless8
 
 
 
-        public worker createWorker(int numbWorker, byte ageWorker, department depNumb)
-        {
-            
-
-            worker newWorker = new worker("Фамилия_" + numbWorker, "Имя_" + numbWorker, ageWorker, depNumb, numbWorker, (ageWorker / 5) * 100, (byte)(ageWorker / 5));
+        //public worker createWorker(int numbWorker, byte ageWorker, department depNumb)
+        //{
 
 
-            return newWorker;
-        }
+        //    worker newWorker = new worker("Фамилия_" + numbWorker, "Имя_" + numbWorker, ageWorker, depNumb, numbWorker, (ageWorker / 5) * 100, (byte)(ageWorker / 5));
+
+
+        //    return newWorker;
+        //}
         //Метод для печати информации об отделе
 
         public void printWorker()
@@ -61,7 +61,7 @@ namespace hwless8
             this.department.nameDepartment,
             this.salary,
             this.projectAmount);
-            
+
 
         }
 

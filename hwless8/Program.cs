@@ -76,18 +76,6 @@ namespace hwless8
             }
         }
 
-        /// <summary>
-        /// Переопределение метода для печати
-        /// </summary>
-        /// <param name="currentList"></param>
-        static void printList(List<worker> currentList)
-        {
-            Console.WriteLine("Список сотрудников:");
-            foreach (worker e in currentList)
-            {
-                e.printWorker();
-            }
-        }
         
         /// <summary>
         /// Метод для удаления отдела
@@ -137,21 +125,7 @@ namespace hwless8
             return currentListDepartment.IndexOf(currentlDep); 
         }
 
-        static int findIndex(string workerLastName, List<worker> currentList)
-        {
-            //int departmentIndex;
-            worker currentWorker = new worker();
-            for (int i = 0; i < currentList.Count; i++)
-            {
-                if (currentList[i].lastName == workerLastName)
-                {
-                    currentWorker = currentList[i];
-
-                }
-            }
-
-            return currentList.IndexOf(currentWorker);
-        }
+        
 
         /// <summary>
         /// Метод для корректировки информации
@@ -190,81 +164,7 @@ namespace hwless8
             currentList.RemoveAt(oldIndex + 1);
         }
         
-        /// <summary>
-        /// Переопределение метода modifyList
-        /// </summary>
-        /// <param name="currentList"></param>
-        static void modifyList(List<worker> currentList)
-        {
-            Console.WriteLine("Введите номер сотрудника, информацию о котором необходимо редактировать");
-
-            string modifyWorkerNumber = Console.ReadLine();
-            //department delDep = new department();
-
-            int oldIndex = findIndex(modifyWorkerNumber, currentList);
-
-            Console.WriteLine($"Индекс в исходном списке сотрудников: {oldIndex}");
-
-            Console.WriteLine("Выберите поле, которое необходимо отредактировать:\n1 - Фамилия;\n2 - Имя;\n3 - Возраст;\n4 - Отдел;\n5 - Зарплата;\n6 - Количество проектов");
-
-            byte newNameField = Convert.ToByte(Console.ReadLine());
-
-           switch (newNameField)
-            {
-                case 1:
-                    {
-                        Console.WriteLine("Введите новую фамилию ");
-
-                        string newLastName = Console.ReadLine();
-
-                        break;
-                    }
-                case 2:
-                    {
-                        Console.WriteLine("Введите новое имя ");
-
-                        string newFirstName = Console.ReadLine();
-                        break;
-                    }
-                case 3:
-                    {
-                        Console.WriteLine("Введите новый возраст");
-
-                        byte newAge = Convert.ToByte(Console.ReadLine());
-                        break;
-                    }
-                case 4:
-                    {
-                        break;
-                    }
-                case 5:
-                    {
-                        break;
-                    }
-                case 6:
-                    {
-                        break;
-                    }
-            }
-           
-
-            Console.WriteLine("Введите новую дату создания ");
-
-            DateTime newDate = Convert.ToDateTime(Console.ReadLine());
-
-            Console.WriteLine("Введите новое количество сотрудников ");
-
-            int newAmount = Convert.ToInt32(Console.ReadLine());
-
-
-            Console.WriteLine("Ввод информации для редактирования окончен");
-
-
-            //department current = new department(newNameField, newDate, newAmount);
-
-            //currentList.Insert(oldIndex, current);
-            currentList.RemoveAt(oldIndex + 1);
-        }
+        
         /// <summary>
         /// Метод для упорядочивания информации
         /// </summary>
@@ -275,12 +175,7 @@ namespace hwless8
            List<department> sorted = currentList.OrderBy(x => x.nameDepartment).ThenBy(x => x.workersAmount).ToList();
             return sorted;
         }
-
-        static List<worker> sortedList(List<worker> currentList)
-        {
-            List<worker> sorted = currentList.OrderBy(x => x.age).ThenBy(x => x.salary).ToList();
-            return sorted;
-        }
+         
 
         static void Main(string[] args)
         {
@@ -370,7 +265,9 @@ namespace hwless8
 
             //Формирование списка отделов
             List<department> newListDepartment = new List<department>();
-            List<worker> newListWorker = new List<worker>();
+            //List<worker> newListWorker = new List<worker>();
+
+            workerList newWorkerList = new workerList();
 
             //Заполение списка отделов
             for (int i = 1; i <= 3; i++)
@@ -403,8 +300,8 @@ namespace hwless8
               
                 int newNumberResult = newNumber.Next(18,70);
 
-                
-                newListWorker.Add(currentWorker.createWorker(i,(byte)newNumberResult, newResultDepartment));
+                newWorkerList.createWorker(i, (byte)newNumberResult, newResultDepartment);
+                //newListWorker.Add(currentWorker.createWorker(i,(byte)newNumberResult, newResultDepartment));
                 //j++;
                 
                 //Console.WriteLine($"number: {i} new number:{newNumberResult}  day: {newNumberDayResult} month:{newNumberMonthResult} year: {newNumberYearResult}");
@@ -413,7 +310,26 @@ namespace hwless8
 
             printList(newListDepartment);
 
-            printList(newListWorker);
+            newWorkerList.printWorkerList();
+
+
+            ////Работа метода упорядочивания сотрудников по отделам, возрасту, заработной плате
+            //Console.WriteLine("После упорядочивания");
+            //newWorkerList.sorted();
+            //newWorkerList.printWorkerList();
+
+            ////Работа метода удаления сотрудника
+            //newWorkerList.removeWorker();
+            //Console.WriteLine("\nПосле удаления сотрудника");
+            //newWorkerList.printWorkerList();
+
+            ////Работа метода редактирования информации о сотруднике
+            //newWorkerList.modifyWorkerList(newListDepartment);
+            //newWorkerList.printWorkerList();
+
+            //Работа метода сериализации списка сотрудников отдела в xml
+            newWorkerList.Serialize();
+
 
             //Console.WriteLine("\nПосле упорядочивания");
 
@@ -448,7 +364,21 @@ namespace hwless8
             //Console.WriteLine("\nДесериализация из xml");
             //printList(newList);
 
-            ////Работа метода десериализации из json
+            workerList deserialiseWorkerList = new workerList();
+            
+            List<worker> desList = new List<worker>();
+
+            desList = deserialiseWorkerList.Deserialize();
+           foreach (worker e in desList)
+            {
+                e.printWorker();
+            }
+
+            string jsonWorkers = JsonConvert.SerializeObject(newWorkerList);
+            File.WriteAllText("jsonListWORKER", jsonWorkers);
+            Console.ReadKey();
+
+            ////Работа метода десериазации из json
             //List<department> newList2 = new List<department>();
             //string fromJsom = File.ReadAllText("jsonListDepartment");
             //newList2 = JsonConvert.DeserializeObject<List<department>>(fromJsom);
