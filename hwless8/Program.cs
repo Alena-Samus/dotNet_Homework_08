@@ -31,7 +31,7 @@ namespace hwless8
             //Закрываем поток
             fStream.Close();
 
-            Console.WriteLine($"Сериализация списка отделов завершилась");
+            Console.WriteLine($"\nСериализация списка отделов завершилась");
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace hwless8
             //Закрываем поток
             fStream.Close();
 
-            Console.WriteLine("Десериализация файла со списком отделов завершилась");
+            Console.WriteLine("\nДесериализация файла со списком отделов завершилась");
             //Возвращаем дерсериализованный лист
             return tempDepartments;
 
@@ -69,7 +69,7 @@ namespace hwless8
         /// <param name="currentList">Принимает list в качестве параметра</param>
         static void printList(List<department> currentList)
         {
-            Console.WriteLine("Список отделов:");
+            Console.WriteLine("\nСписок отделов:");
             foreach (department e in currentList)
             {
                 e.printDepartment();
@@ -83,7 +83,7 @@ namespace hwless8
         /// <param name="currentListDepartment">Текущий список отделов</param>
         static void removeElement(List<department> currentListDepartment)
         {
-            Console.WriteLine("Введите отдел, который необходимо удалить");
+            Console.WriteLine("\nВведите отдел, который необходимо удалить");
 
             string delDepStr = Console.ReadLine();
             department delDep = new department();
@@ -133,29 +133,29 @@ namespace hwless8
         /// <param name="currentList"></param>
         static void modifyList(List<department> currentList)
         {
-            Console.WriteLine("Введите отдел, который необходимо редактировать");
+            Console.WriteLine("\nВведите отдел, который необходимо редактировать");
 
             string modifyDepStr = Console.ReadLine();
             //department delDep = new department();
 
             int oldIndex = findIndex(modifyDepStr, currentList);
 
-            Console.WriteLine($"Индекс в исходном списке отделов: {oldIndex}");
+            Console.WriteLine($"\nИндекс в исходном списке отделов: {oldIndex}");
 
-            Console.WriteLine("Введите новое название");
+            Console.WriteLine("\nВведите новое название");
 
             string newNameDep = Console.ReadLine();
 
-            Console.WriteLine("Введите новую дату создания ");
+            Console.WriteLine("\nВведите новую дату создания ");
 
             DateTime newDate = Convert.ToDateTime(Console.ReadLine());
 
-            Console.WriteLine("Введите новое количество сотрудников ");
+            Console.WriteLine("\nВведите новое количество сотрудников ");
 
             int newAmount = Convert.ToInt32(Console.ReadLine());
 
 
-            Console.WriteLine("Ввод информации для редактирования окончен");
+            Console.WriteLine("\nВвод информации для редактирования окончен");
 
 
             department current = new department(newNameDep, newDate, newAmount);
@@ -265,12 +265,8 @@ namespace hwless8
 
             //Формирование списка отделов
             List<department> newListDepartment = new List<department>();
-            //List<worker> newListWorker = new List<worker>();
-
-            workerList newWorkerList = new workerList();
-
             //Заполение списка отделов
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 department current = new department();
                 int newNumberResult = newNumber.Next(1_000_000);
@@ -285,9 +281,51 @@ namespace hwless8
 
                 newListDepartment.Add(current.createDepertment(i, newNumberResult, newNumberDayResult, newNumberMonthResult, newNumberYearResult));
                 //Console.WriteLine($"number: {i} new number:{newNumberResult}  day: {newNumberDayResult} month:{newNumberMonthResult} year: {newNumberYearResult}");
-            }         
+            }
 
-            
+
+            Console.WriteLine("\nДо упорядочивания");
+            printList(newListDepartment);
+
+
+            Console.WriteLine("\nПосле упорядочивания");
+
+            printList(sortedList(newListDepartment));
+
+
+            //Работа метода сериализации
+            Serialize(newListDepartment, "newListDepartments.xml");
+
+            //Сериализация в json
+            string jsonDepartment = JsonConvert.SerializeObject(newListDepartment);
+            File.WriteAllText("jsonListDepartment", jsonDepartment);
+            Console.ReadKey();
+
+            //Работа метода десериализации
+            List<department> newList = new List<department>();
+            newList = Deserialize("newListDepartments.xml");
+            Console.WriteLine("\nДесериализация из xml");
+            printList(newList);
+
+            //Работа метода десериазации из json
+            List<department> newList2 = new List<department>();
+            string fromJsom = File.ReadAllText("jsonListDepartment");
+            newList2 = JsonConvert.DeserializeObject<List<department>>(fromJsom);
+            Console.WriteLine("\nДесериализация изjson");
+            printList(newList2);
+
+
+            modifyList(newListDepartment);
+
+            printList(newListDepartment);
+
+            removeElement(newListDepartment);
+            printList(newListDepartment);
+
+
+            workerList newWorkerList = new workerList();
+                     
+
             //Заполнение списка сотрудников
             for (int i = 1; i <= 10; i++)
             {
@@ -297,107 +335,54 @@ namespace hwless8
 
                 department newResultDepartment = newListDepartment[newNumberDepartment];
 
-              
-                int newNumberResult = newNumber.Next(18,70);
+
+                int newNumberResult = newNumber.Next(18, 70);
 
                 newWorkerList.createWorker(i, (byte)newNumberResult, newResultDepartment);
                 //newListWorker.Add(currentWorker.createWorker(i,(byte)newNumberResult, newResultDepartment));
                 //j++;
-                
+
                 //Console.WriteLine($"number: {i} new number:{newNumberResult}  day: {newNumberDayResult} month:{newNumberMonthResult} year: {newNumberYearResult}");
             }
-            Console.WriteLine("До упорядочивания");
+            Console.WriteLine("\nДо упорядочивания");
 
             printList(newListDepartment);
 
             newWorkerList.printWorkerList();
 
 
-            ////Работа метода упорядочивания сотрудников по отделам, возрасту, заработной плате
-            //Console.WriteLine("После упорядочивания");
-            //newWorkerList.sorted();
-            //newWorkerList.printWorkerList();
+            //Работа метода упорядочивания сотрудников по отделам, возрасту, заработной плате
+            Console.WriteLine("\nПосле упорядочивания");
+            newWorkerList.sorted();
+            newWorkerList.printWorkerList();
 
-            ////Работа метода удаления сотрудника
-            //newWorkerList.removeWorker();
-            //Console.WriteLine("\nПосле удаления сотрудника");
-            //newWorkerList.printWorkerList();
+            //Работа метода удаления сотрудника
+            newWorkerList.removeWorker();
+            Console.WriteLine("\nПосле удаления сотрудника");
+            newWorkerList.printWorkerList();
 
-            ////Работа метода редактирования информации о сотруднике
-            //newWorkerList.modifyWorkerList(newListDepartment);
-            //newWorkerList.printWorkerList();
+            //Работа метода редактирования информации о сотруднике
+            newWorkerList.modifyWorkerList(newListDepartment);
+            newWorkerList.printWorkerList();
 
             //Работа метода сериализации списка сотрудников отдела в xml
             newWorkerList.Serialize();
 
-
-            //Console.WriteLine("\nПосле упорядочивания");
-
-            //printList(sortedList(newListDepartment));
-            //printList(sortedList(newListWorker));
-
-            //Отделы
-            //newListDepartment.Add(current.createDepertment(1, 10, 1, 3, 2007));
-            //newListDepartment.Add(current.createDepertment(2, 33, 14, 8, 2003));
-            //newListDepartment.Add(current.createDepertment(3, 75, 30, 12, 2019));
-            //newListDepartment.Add(current.createDepertment(2, 18, 30, 12, 2019));
-            //newListDepartment.Add(current.createDepertment(3, 180, 30, 12, 2019));
-            //newListDepartment.Add(current.createDepertment(2, 18, 30, 12, 2019));
-
-            //Console.WriteLine("До упорядочивания");
-            //printList(newListDepartment);
-
-            //Console.WriteLine("\nПосле упорядочивания");
-            //printList(sortedList(newListDepartment));
-
-            ////Работа метода сериализации
-            //Serialize(newListDepartment, "newListDepartments.xml");
-
-            ////Сериализация в json
-            //string jsonDepartment = JsonConvert.SerializeObject(newListDepartment);
-            //File.WriteAllText("jsonListDepartment", jsonDepartment);
-            //Console.ReadKey();
-
-            ////Работа метода десериализации
-            //List<department> newList = new List<department>();
-            //newList = Deserialize("newListDepartments.xml");
-            //Console.WriteLine("\nДесериализация из xml");
-            //printList(newList);
-
+            //Работа метода десериализации списка сотрудников отдела из xml
             workerList deserialiseWorkerList = new workerList();
-            
+
             List<worker> desList = new List<worker>();
 
             desList = deserialiseWorkerList.Deserialize();
-           foreach (worker e in desList)
-            {
-                e.printWorker();
-            }
 
-            string jsonWorkers = JsonConvert.SerializeObject(newWorkerList);
-            File.WriteAllText("jsonListWORKER", jsonWorkers);
-            Console.ReadKey();
+            workerList afterDeserialize = new workerList(desList);
+            afterDeserialize.printWorkerList();
 
-            ////Работа метода десериазации из json
-            //List<department> newList2 = new List<department>();
-            //string fromJsom = File.ReadAllText("jsonListDepartment");
-            //newList2 = JsonConvert.DeserializeObject<List<department>>(fromJsom);
-            //Console.WriteLine("\nДесериализация изjson");
-            //printList(newList2);
-
-
-            //modifyList(newListDepartment);
-
-            //printList(newListDepartment);
-
-
-
-            //removeElement(newListDepartment);
-            //printList(newListDepartment);
-
-            //Сотрудники
-
-
+            newWorkerList.SerializeJson();
+            desList = deserialiseWorkerList.DeserializeJson();
+            workerList afterDeserializeJson = new workerList(desList);
+            afterDeserializeJson.printWorkerList();
+          
 
 
 

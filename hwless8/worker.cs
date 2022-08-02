@@ -40,17 +40,6 @@ namespace hwless8
 
 
 
-        //public worker createWorker(int numbWorker, byte ageWorker, department depNumb)
-        //{
-
-
-        //    worker newWorker = new worker("Фамилия_" + numbWorker, "Имя_" + numbWorker, ageWorker, depNumb, numbWorker, (ageWorker / 5) * 100, (byte)(ageWorker / 5));
-
-
-        //    return newWorker;
-        //}
-        //Метод для печати информации об отделе
-
         public void printWorker()
         {
             Console.WriteLine("{0,5} {1,15} {2,10} {3,3} {4,10} {5,6} {6,4}",

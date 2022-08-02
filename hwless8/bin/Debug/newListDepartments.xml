@@ -2,32 +2,27 @@
 <ArrayOfDepartment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <department>
     <nameDepartment>Отдел_1</nameDepartment>
-    <foundingDate>2007-03-01T00:00:00</foundingDate>
-    <workersAmount>10</workersAmount>
+    <foundingDate>2002-12-22T00:00:00</foundingDate>
+    <workersAmount>723437</workersAmount>
   </department>
   <department>
     <nameDepartment>Отдел_2</nameDepartment>
-    <foundingDate>2003-08-14T00:00:00</foundingDate>
-    <workersAmount>33</workersAmount>
+    <foundingDate>2014-10-26T00:00:00</foundingDate>
+    <workersAmount>975177</workersAmount>
   </department>
   <department>
     <nameDepartment>Отдел_3</nameDepartment>
-    <foundingDate>2019-12-30T00:00:00</foundingDate>
-    <workersAmount>75</workersAmount>
+    <foundingDate>2001-01-30T00:00:00</foundingDate>
+    <workersAmount>91951</workersAmount>
   </department>
   <department>
-    <nameDepartment>Отдел_2</nameDepartment>
-    <foundingDate>2019-12-30T00:00:00</foundingDate>
-    <workersAmount>18</workersAmount>
+    <nameDepartment>Отдел_4</nameDepartment>
+    <foundingDate>2009-11-26T00:00:00</foundingDate>
+    <workersAmount>845907</workersAmount>
   </department>
   <department>
-    <nameDepartment>Отдел_3</nameDepartment>
-    <foundingDate>2019-12-30T00:00:00</foundingDate>
-    <workersAmount>180</workersAmount>
-  </department>
-  <department>
-    <nameDepartment>Отдел_2</nameDepartment>
-    <foundingDate>2019-12-30T00:00:00</foundingDate>
-    <workersAmount>18</workersAmount>
+    <nameDepartment>Отдел_5</nameDepartment>
+    <foundingDate>2020-06-26T00:00:00</foundingDate>
+    <workersAmount>782453</workersAmount>
   </department>
 </ArrayOfDepartment>
